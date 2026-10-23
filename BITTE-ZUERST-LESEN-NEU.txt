@@ -1,0 +1,16 @@
+PLATINO LADIES – LEITUNGSZENTRALE / BEWERBUNGSÜBERSICHT
+
+1. ZIP entpacken.
+2. Alle Dateien und Unterordner aus dem Ordner PlatinoLadies-main nach GitHub ins Repository-Hauptverzeichnis hochladen.
+3. Auf der Website Mitgliederbereich -> Leitungszentrale öffnen.
+4. Das gemeinsame Supabase-Leitungspasswort EINMAL in der Leitungszentrale eingeben.
+5. Auf „Bewerbungsverwaltung“ klicken. Keine erneute Passworteingabe innerhalb der Sitzung.
+6. Bewerbungen nach Status filtern, suchen und aufklappen.
+7. Lutz kann sich wie bisher mit seinem Zusatzcode freischalten.
+
+WICHTIG:
+- Die bereits eingerichtete Supabase Edge Function bleibt unverändert.
+- Keine Passwörter oder Tokens in GitHub-Dateien speichern.
+- Die Sitzung wird im sessionStorage des jeweiligen Browser-Tabs gehalten.
+- Die bestehende verschlüsselte Leitungszentrale wurde durch die neue gemeinsame Anmeldung ersetzt.
+- Die übrigen Mitgliederseiten und deren Clubpasswort bleiben unverändert.

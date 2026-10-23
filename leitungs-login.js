@@ -1,1 +1,35 @@
-(()=>{const s=document.getElementById('leader-status'),f=document.getElementById('leader-form'),enc=new TextEncoder(),dec=new TextDecoder();const b64=x=>Uint8Array.from(atob(x),c=>c.charCodeAt(0));async function show(key){const p=await(await fetch('leitungszentrale.html.encrypted.json',{cache:'no-store'})).json();const plain=await crypto.subtle.decrypt({name:'AES-GCM',iv:b64(p.iv)},key,b64(p.data));document.open();document.write(dec.decode(plain));document.close()}async function loadSaved(){try{const raw=sessionStorage.getItem('pl_leader_key');if(!raw)return;const k=await crypto.subtle.importKey('raw',b64(raw),'AES-GCM',false,['decrypt']);await show(k)}catch(e){sessionStorage.removeItem('pl_leader_key')}}loadSaved();f.addEventListener('submit',async e=>{e.preventDefault();s.textContent='Schlüssel wird geprüft …';try{const c=await(await fetch('leitungs-config.json',{cache:'no-store'})).json();const material=await crypto.subtle.importKey('raw',enc.encode(document.getElementById('leader-password').value),'PBKDF2',false,['deriveKey']);const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt:b64(c.salt),iterations:c.iterations,hash:'SHA-256'},material,{name:'AES-GCM',length:256},true,['decrypt']);await show(key);const raw=new Uint8Array(await crypto.subtle.exportKey('raw',key));sessionStorage.setItem('pl_leader_key',btoa(String.fromCharCode(...raw)))}catch(err){s.textContent='Passwort nicht korrekt. Bitte erneut versuchen.'}})})();
+(()=>{
+'use strict';
+const ENDPOINT='https://lqmwirnifapxctzmkmll.supabase.co/functions/v1/leitung-zugang';
+const KEY='pl_leitung_session';
+const gate=document.getElementById('leader-gate'),hub=document.getElementById('leader-hub');
+const form=document.getElementById('leader-form'),status=document.getElementById('leader-status');
+function showHub(){gate.hidden=true;hub.hidden=false;}
+function showGate(){hub.hidden=true;gate.hidden=false;}
+async function validate(){
+ const token=sessionStorage.getItem(KEY);
+ if(!token){showGate();return;}
+ try{
+  const r=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'list',token})});
+  if(!r.ok)throw Error('Sitzung abgelaufen');
+  showHub();
+ }catch{sessionStorage.removeItem(KEY);showGate();}
+}
+form.addEventListener('submit',async e=>{
+ e.preventDefault();status.textContent='Zugang wird geprüft …';
+ const btn=form.querySelector('button');btn.disabled=true;
+ try{
+  const r=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'login',password:document.getElementById('leader-password').value})});
+  const data=await r.json();
+  if(!r.ok||!data.token)throw Error(data.error||'Anmeldung fehlgeschlagen');
+  sessionStorage.setItem(KEY,data.token);
+  document.getElementById('leader-password').value='';
+  status.textContent='';showHub();
+ }catch(err){status.textContent=err.message||'Anmeldung fehlgeschlagen';}
+ finally{btn.disabled=false;}
+});
+document.getElementById('leader-logout').addEventListener('click',()=>{
+ sessionStorage.removeItem(KEY);showGate();status.textContent='Abgemeldet.';
+});
+validate();
+})();

@@ -8,3 +8,37 @@
 .pl-note-status[data-error=true]{color:#ffc4d0}
 
 #pl-owner-form[hidden]{display:none!important}#pl-owner-form{margin:16px 0;padding:18px;border:1px solid #694783;border-radius:14px}#pl-owner-form label{display:grid;gap:8px}#pl-owner-code{padding:12px;background:#171020;color:white;border:1px solid #81609b;border-radius:10px}
+
+/* Leitungszentrale und sortierte Bewerbungsübersicht */
+#leader-gate[hidden],#leader-hub[hidden]{display:none!important}
+.pl-hub{text-align:center;max-width:750px;margin:24px auto}
+.pl-hub .topic-grid{margin:24px auto;max-width:540px}
+.pl-hub .ghost{margin-top:20px}
+.pl-toolbar{margin:24px 0 14px;display:grid;gap:16px}
+.pl-search-label{display:grid;gap:8px;color:#e7d8f0}
+.pl-search-label input{width:100%;padding:13px 15px;border-radius:12px;border:1px solid #81609b;background:#171020;color:#fff;font:inherit}
+.pl-filters{display:flex;flex-wrap:wrap;gap:8px}
+.pl-filter{cursor:pointer;border:1px solid #76548d;background:rgba(65,39,82,.45);color:#e8d7f4;border-radius:30px;padding:9px 13px;font:inherit}
+.pl-filter span{opacity:.8;margin-left:4px}
+.pl-filter.is-active{background:#806098;color:white;border-color:#ba92d1}
+.pl-application{padding:0;overflow:hidden}
+.pl-details{width:100%}
+.pl-summary{cursor:pointer;list-style:none;padding:20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.pl-summary::-webkit-details-marker{display:none}
+.pl-summary-title{display:grid;gap:7px;flex:1;min-width:190px}
+.pl-summary-title strong{font-size:1.16rem;color:#f3e5fa}
+.pl-summary-title small{font-size:.9rem;color:#d1bfdc}
+.pl-expand-label{font-size:.85rem;color:#d7b5ee}
+.pl-details[open] .pl-expand-label{font-size:0}
+.pl-details[open] .pl-expand-label::after{content:'Details schließen';font-size:.85rem}
+.pl-detail-content{padding:0 20px 22px;border-top:1px solid #694783}
+.pl-fields{display:grid;grid-template-columns:minmax(120px,190px) minmax(0,1fr);gap:10px 18px;overflow-wrap:anywhere}
+.pl-fields dt{color:#bba9c7}.pl-fields dd{margin:0;white-space:pre-wrap}
+.pl-pill{white-space:nowrap}
+.pl-pill-neu{background:rgba(128,96,152,.3)}
+.pl-pill-in_bearbeitung{background:rgba(119,110,171,.3)}
+.pl-pill-angenommen{background:rgba(65,132,97,.28);border-color:#72a98a}
+.pl-pill-abgelehnt{background:rgba(157,72,91,.24);border-color:#c08499}
+.pl-empty{text-align:center;padding:30px;color:#dac9e3}
+.pl-decision-actions{margin-top:20px}
+@media(max-width:560px){.pl-fields{grid-template-columns:1fr;gap:4px}.pl-fields dt{margin-top:12px}.pl-summary{padding:15px}.pl-detail-content{padding:0 15px 18px}}
