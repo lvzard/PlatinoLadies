@@ -6,3 +6,5 @@
 .pl-notes textarea:focus{outline:2px solid #ab82cc;outline-offset:2px}
 .pl-notes .pl-actions{justify-content:flex-start;margin-top:12px}
 .pl-note-status[data-error=true]{color:#ffc4d0}
+
+#pl-owner-form[hidden]{display:none!important}#pl-owner-form{margin:16px 0;padding:18px;border:1px solid #694783;border-radius:14px}#pl-owner-form label{display:grid;gap:8px}#pl-owner-code{padding:12px;background:#171020;color:white;border:1px solid #81609b;border-radius:10px}

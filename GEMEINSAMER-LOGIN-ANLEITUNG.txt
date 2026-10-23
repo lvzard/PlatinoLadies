@@ -1,0 +1,26 @@
+PLATINO LADIES – GEMEINSAMER LEITUNGSLOGIN
+
+WICHTIG: DIE NEUE WEBSITE NICHT SOFORT LIVE SCHALTEN.
+Die HTML/JS-Dateien benötigen zuerst eine aktive Supabase Edge Function.
+
+1. In Supabase → SQL Editor → New query den Inhalt von SUPABASE-GEMEINSAMER-LOGIN.sql ausführen.
+2. Supabase → Edge Functions → Create function → Name: leitung-zugang.
+   Den Inhalt von SUPABASE-EDGE-FUNCTION-leitung-zugang.ts als index.ts einsetzen und deployen.
+   "Verify JWT with legacy secret" für diese Function deaktivieren.
+3. In Supabase → Edge Functions → Secrets diese drei Werte hinterlegen:
+   LEITUNG_PASSWORT = NEUES, NOCH NICHT GETEILTES gemeinsames Passwort
+   LUTZ_ZUSATZCODE = NEUER, NOCH NICHT GETEILTER langer Zusatzcode
+   LEITUNG_SESSION_SECRET = zufälliger, mindestens 32 Zeichen langer geheimer Wert
+   Keinen dieser Werte in GitHub-Dateien speichern oder hier in den Chat senden.
+4. Erst nach erfolgreichem Funktionstest die Website-Dateien nach GitHub hochladen.
+   Die .sql-, .ts- und diese Anleitung nicht hochladen.
+5. Vor echter Nutzung: Die alten persönlichen Supabase-Zugänge und zugehörige RLS-/RPC-Rechte
+   separat überprüfen und bei Bedarf entziehen; sonst bleiben alternative Zugangswege bestehen.
+
+SICHERHEIT: Die geteilten bisherigen Passwörter und der sechsstellige Code sind nicht mehr geheim.
+Die Website verwendet absichtlich KEINEN im Chat genannten Code. Es ist ein neuer Wert nötig.
+Die Sitzung gilt eine Stunde; nach Neuladen der Seite ist eine erneute Anmeldung erforderlich.
+Ein gemeinsames Passwort unterscheidet nicht zwischen Leo, Kayzz und Mo. Die Anzeige
+"Bearbeitet von: Clubleitung" ist deshalb bewusst allgemein gehalten.
+Die Anmeldung hat einfache IP-basierte Versuchslimits. Für produktiven Einsatz mit
+personenbezogenen Daten sollte zusätzlich ein Security Review erfolgen.
