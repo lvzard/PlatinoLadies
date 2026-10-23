@@ -1,0 +1,10 @@
+PLATINO LADIES – LEITUNGSZENTRALE
+
+1. Lade ALLE Dateien und Ordner aus diesem ZIP in das Hauptverzeichnis deiner GitHub-Pages-Website.
+2. Mitgliederbereich mit bisherigem Clubpasswort öffnen.
+3. Auf Leitungszentrale klicken und separates Leitungspasswort eingeben.
+4. Das Leitungspasswort NICHT auf GitHub hochladen, sondern nur privat an Lutz, Leo, Kayzz und Mo geben.
+
+ACHTUNG: Diese Version ist eine verschlüsselte UI-VORSCHAU. Sie empfängt und speichert KEINE Bewerbungen. Für echte Bewerbungen und personenbezogene Rechte (nur Lutz darf annehmen/ablehnen) sind Backend, Datenbank und individuelle Logins erforderlich.
+
+Das Leitungspasswort wurde neu gesetzt. Ersetze beide Dateien leitungs-config.json und leitungszentrale.html.encrypted.json gemeinsam.
