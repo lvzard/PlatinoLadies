@@ -1,7 +1,0 @@
-VORSCHAU – 22.10.2026
-Originaltext der gespeicherten Startseite bleibt erhalten.
-Das originale Platino-Ladies-Logo ist jetzt lokal eingebunden und funktioniert offline.
-Der alte Wochenplan ist als ausdrücklich historische Vorschau eingebunden.
-Alle übrigen Bereiche und die Dressage Academy wurden beibehalten.
-Zum Prüfen index.html öffnen. Für die Veröffentlichung die Dateien in dein GitHub-Repository hochladen.
-Die ZIP aktualisiert GitHub Pages nicht automatisch.
