@@ -1,8 +1,22 @@
-Platino Dressage Academy – individuelle Bewegungsabläufe
+Platino Ladies – KORREKTUR LEITUNGSZENTRALE
 
-Auf GitHub diese drei Dateien ersetzen:
-academy-data.js
-academy-v2.js
-dressage-academy.html
+WICHTIG: Dies ist ein kleines Update, keine vollständige Website.
+Die 5 Dateien direkt in das HAUPTVERZEICHNIS des GitHub-Repositories hochladen:
+- leitungszentrale.html
+- leitungs-login.js
+- leitungs-bewerbungen.html
+- leitungs-bewerbungen.js
+- leitungs-bewerbungen.css
 
-WICHTIG: Die Animationen sind schematische Rekonstruktionen nach den übermittelten Beschreibungen, keine vollständig SSD-geprüften Reitwege. Komplexe Formationen, Gangarten und Kommandotiming benötigen weitere Verfeinerung. Bloom/Cave/Rotary bleiben in ihrer bisherigen Geometrie erhalten.
+GitHub: Repository -> Add file -> Upload files -> Dateien aus diesem Ordner wählen -> Commit changes.
+Nicht den Ordner selbst hochladen. Falls GitHub nicht anbietet, vorhandene Dateien zu ersetzen,
+überprüfen, ob sie im Hauptverzeichnis liegen.
+
+TEST:
+https://lvzard.github.io/PlatinoLadies/leitungszentrale.html
+Strg+F5 drücken. Leitungspasswort ist das NEUE in Supabase hinterlegte
+Passwort (Secret LEITUNG_PASSWORT), nicht das alte Clubpasswort.
+Nach erfolgreichem Login erscheint „Bewerbungsverwaltung“.
+Kein zusätzlicher Login in der Bewerbungsverwaltung nötig.
+
+Das separate Clubpasswort des Mitgliederbereichs bleibt unverändert.
