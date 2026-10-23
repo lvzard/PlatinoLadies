@@ -1,0 +1,16 @@
+PLATINO DRESSAGE ACADEMY – NEUSTART 1
+
+Dies ist eine erste technische Korrektur, NICHT die fertige Umsetzung aller Figuren.
+
+- Vorhandene Website und 12 Dictionary-Kategorien bleiben bestehen.
+- Bloom, Cave und Rotary bleiben wie in der hochgeladenen Version.
+- Die Grundfiguren Curl, Curl Over, Comb, Slant, Back Slant, Fish, Keyhole und Ribbon sind als geometrische Bausteine vorhanden.
+- Für unbekannte Figuren wird keine erfundene Standard-Curl mehr angezeigt.
+- Andere komplexe Animationen sind schematisch und noch nicht geprüft.
+
+TESTEN AM PC:
+1. Ordner entpacken.
+2. dressage-academy.html im Browser öffnen.
+3. Figuren vergleichen; bitte noch nicht auf GitHub veröffentlichen.
+
+Weitere Arbeit: Grundbewegungen anhand echter Videoreferenzen überprüfen, dann Formationen und Gangarten je Figur implementieren.

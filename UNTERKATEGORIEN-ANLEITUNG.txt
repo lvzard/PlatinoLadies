@@ -1,0 +1,1 @@
+The Arena und Fundamentals haben jetzt anklickbare Unterkategorien. Nach Auswahl erscheinen die zugehörigen Erklärungen und Darstellungen untereinander. Zum Testen dressage-academy.html öffnen. Auf GitHub bei Bedarf academy-v2.js, academy-v2.css und dressage-academy.html ersetzen.
