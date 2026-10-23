@@ -1,54 +1,74 @@
-/* Gästebuch: only published entries from a future trusted read-only API.
-   Do not expose Discord webhooks, bot tokens or admin credentials in GitHub Pages. */
 (() => {
   'use strict';
-  // Configure this URL after deploying a secure backend. Until then the empty state is shown.
-const PUBLIC_ENTRIES_ENDPOINT = "https://lqmwirnifapxctzmkmll.supabase.co/functions/v1/gaestebuch-einreichen";
-  const list = document.getElementById('guestbook-entries');
-  const count = document.getElementById('guestbook-count');
-  if (!list || !count || !PUBLIC_ENTRIES_ENDPOINT) return;
-  const emptyMarkup = list.innerHTML;
-  const text = (tag, cls, value) => { const el = document.createElement(tag); el.className = cls; el.textContent = value; return el; };
-  async function loadEntries() {
-    try {
-      const response = await fetch(PUBLIC_ENTRIES_ENDPOINT, {headers: {Accept:'application/json'}, cache:'no-store'});
-      if (!response.ok) throw new Error('Einträge konnten nicht geladen werden');
-      const data = await response.json();
-      if (!Array.isArray(data)) throw new Error('Ungültiges Antwortformat');
-      // Defense in depth: public endpoint must already filter approved records server-side.
-      const approved = data.filter(e => e && e.status === 'approved' && typeof e.name === 'string' && typeof e.message === 'string').slice(0, 100);
-      list.replaceChildren();
-      count.textContent = `${approved.length} ${approved.length === 1 ? 'Eintrag' : 'Einträge'}`;
-      if (!approved.length) { list.innerHTML = emptyMarkup; return; }
-      for (const entry of approved) {
-        const card = document.createElement('article'); card.className = 'guestbook-entry';
-        const head = document.createElement('div'); head.className = 'guestbook-entry-header';
-        const who = document.createElement('div');
-        who.append(text('div','guestbook-entry-name',entry.name.slice(0,70)));
-        if (entry.club) who.append(text('div','guestbook-entry-club',String(entry.club).slice(0,80)));
-        head.append(who, text('span','guestbook-entry-spark','✧'));
-        card.append(head, text('p','guestbook-entry-message',entry.message.slice(0,1200)));
-        if (entry.created_at) { const d = new Date(entry.created_at); if (!Number.isNaN(d.getTime())) card.append(text('div','guestbook-entry-date',new Intl.DateTimeFormat('de-DE',{dateStyle:'medium'}).format(d))); }
-        list.append(card);
-      }
-    } catch (error) {
-      list.replaceChildren();
-      const panel = text('div','guestbook-load-error','Die Gästebucheinträge konnten gerade nicht geladen werden.');
-      const retry = text('button','btn ghost','Erneut versuchen'); retry.type='button'; retry.addEventListener('click',loadEntries); panel.append(document.createElement('br'),retry); list.append(panel);
-    }
-  }
+  const ENDPOINT = 'https://lqmwirnifapxctzmkmll.supabase.co/functions/v1/gaestebuch-einreichen';
+  const left=document.getElementById('pl-page-left'),right=document.getElementById('pl-page-right');
+  const count=document.getElementById('guestbook-count'),progress=document.getElementById('pl-book-progress');
+  const prev=document.getElementById('pl-book-prev'),next=document.getElementById('pl-book-next');
   const form=document.getElementById('guestbook-form');
-  const hint=form?.querySelector('.guestbook-hint');
-  form?.addEventListener('submit',async e=>{
+  if(!left||!right||!form)return;
+  const hint=form.querySelector('.guestbook-hint');
+  const isMobile=()=>window.matchMedia('(max-width:700px)').matches;
+  const node=(tag,cls,value)=>{const n=document.createElement(tag);n.className=cls;if(value!==undefined)n.textContent=value;return n;};
+  let entries=[],position=0,loadError=false;
+  function pages(){return [{kind:'intro'},...entries.map(e=>({kind:'entry',entry:e})),{kind:'form'}];}
+  function renderPage(target,page,index){
+    target.replaceChildren();target.classList.toggle('pl-page-blank',!page);
+    if(!page)return;
+    target.append(node('div','pl-page-ornament','✦  ☾  ✦'));
+    if(page.kind==='intro'){
+      target.append(node('div','pl-book-small','PLATINO LADIES'));
+      target.append(node('h3','pl-book-title','Unser Gästebuch'));
+      target.append(node('div','pl-book-moon','☽ ✧ ☾'));
+      target.append(node('p','pl-book-intro','Jede Begegnung hinterlässt einen Funken Magie. Hier bewahren wir eure lieben Worte und Erinnerungen.'));
+      target.append(node('p','pl-book-signature','In Liebe, die Platis ♡'));
+    } else if(page.kind==='entry'){
+      const e=page.entry;
+      target.append(node('div','pl-book-small','✧ EIN LIEBER GRUSS ✧'));
+      target.append(node('h3','pl-entry-name',String(e.name).slice(0,70)));
+      if(e.club)target.append(node('p','pl-entry-club',String(e.club).slice(0,80)));
+      target.append(node('div','pl-book-divider','❧ ✦ ❧'));
+      target.append(node('p','pl-entry-message',String(e.message).slice(0,1200)));
+      if(e.created_at){const d=new Date(e.created_at);if(!Number.isNaN(d.getTime()))target.append(node('p','pl-entry-date',new Intl.DateTimeFormat('de-DE',{dateStyle:'medium'}).format(d)));}
+    } else {
+      target.append(node('div','pl-book-small','✒ DEINE SEITE'));
+      target.append(node('h3','pl-entry-name','Schreib uns!'));
+      target.append(node('p','pl-form-intro','Hinterlasse einen Gruß für die Platino Ladies. Nach Freigabe bekommt er seine eigene Buchseite.'));
+      target.append(form);
+    }
+    target.append(node('div','pl-page-number',String(index+1)));
+  }
+  function render(){
+    const all=pages(),step=isMobile()?1:2;
+    position=Math.min(position,Math.max(0,Math.ceil(all.length/step)-1));
+    const offset=position*step;
+    renderPage(left,all[offset],offset);
+    if(isMobile()){right.hidden=true;}else{right.hidden=false;renderPage(right,all[offset+1],offset+1);}
+    progress.textContent=`✧ ${position+1} / ${Math.ceil(all.length/step)} ✧`;
+    prev.disabled=position===0;next.disabled=position>=Math.ceil(all.length/step)-1;
+  }
+  prev.addEventListener('click',()=>{position--;render();});
+  next.addEventListener('click',()=>{position++;render();});
+  window.addEventListener('resize',()=>{position=0;render();});
+  async function load(){
+    try{
+      const res=await fetch(ENDPOINT,{headers:{Accept:'application/json'},cache:'no-store'});
+      if(!res.ok)throw new Error('Laden fehlgeschlagen');
+      const data=await res.json();if(!Array.isArray(data))throw new Error('Ungültige Antwort');
+      entries=data.filter(e=>e&&e.status==='approved'&&typeof e.name==='string'&&typeof e.message==='string').slice(0,100);
+      count.textContent=entries.length+' '+(entries.length===1?'Eintrag':'Einträge');
+      position=0;render();
+    }catch(err){count.textContent='Einträge momentan nicht erreichbar';entries=[];render();}
+  }
+  form.addEventListener('submit',async e=>{
     e.preventDefault();if(!form.reportValidity())return;
-    const btn=form.querySelector('button[type=submit]');btn.disabled=true;
+    const btn=form.querySelector('[type=submit]');btn.disabled=true;
     hint.textContent='Nachricht wird übermittelt …';
     try{
       const payload={name:document.getElementById('guestbook-name').value.trim(),club:document.getElementById('guestbook-club').value.trim(),message:document.getElementById('guestbook-message').value.trim()};
-      const res=await fetch(PUBLIC_ENTRIES_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+      const res=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
       const data=await res.json();if(!res.ok)throw Error(data.error||'Senden fehlgeschlagen');
-      form.reset();hint.textContent='✓ Danke! Deine Nachricht wartet auf die Freigabe durch unsere Leitung.';
+      form.reset();hint.textContent='✓ Danke! Dein Eintrag wartet auf die Freigabe durch die Leitung.';
     }catch(err){hint.textContent='Fehler: '+err.message;}finally{btn.disabled=false;}
   });
-  loadEntries();
+  render();load();
 })();
