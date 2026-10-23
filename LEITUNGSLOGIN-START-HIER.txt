@@ -1,0 +1,12 @@
+PLATINO LADIES – LEITUNGSLOGIN
+
+1. In Supabase → SQL Editor → New query die Datei SUPABASE-LEITUNGSLOGIN-SQL.sql vollständig einfügen und Run drücken.
+2. Alle Dateien aus diesem ZIP im GitHub-Repository aktualisieren (die bestehende Website bleibt erhalten).
+3. Öffne https://lvzard.github.io/PlatinoLadies/leitungs-bewerbungen.html
+4. Melde dich mit dem zuvor in Supabase Authentication angelegten Lutz-Account an.
+5. Teste zuerst nur mit Testbewerbungen.
+
+Neue Dateien: leitungs-bewerbungen.html, leitungs-bewerbungen.css, leitungs-bewerbungen.js und diese Anleitung plus SQL.
+Geändert: leitungszentrale.html (zusätzlicher Link zur Bewerbungsverwaltung).
+
+SICHERHEIT: Das bisherige gemeinsame Leitungspasswort ersetzt NICHT den persönlichen Supabase-Login. Nur der eingetragene Owner kann Status ändern. Die Browseroberfläche allein ist keine Sicherheitsgrenze.
