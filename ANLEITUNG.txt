@@ -1,22 +1,11 @@
-PLATINO LADIES – COUNTDOWN + KALENDER-HINWEISE
+PLATINO LADIES – Countdown auf der Warteliste
 
-1) Die folgenden 4 Dateien in den Hauptordner von GitHub hochladen:
-   secure-loader.js (vorhandene Datei ersetzen)
-   kalender-hinweise-entfernen.js (neu)
-   aufnahme-countdown.js (neu)
-   aufnahme-countdown.css (neu)
+1. ZIP herunterladen und entpacken.
+2. GitHub-Repository platinoladies/platinoladies.github.io öffnen.
+3. Bestehende warteliste.html öffnen und über das Stift-Symbol bearbeiten.
+4. Den gesamten bisherigen HTML-Inhalt durch den Inhalt der beigefügten warteliste.html ersetzen.
+   Alternativ die bestehende Datei im Repository löschen und die neue warteliste.html hochladen.
+5. Commit changes klicken.
+6. Nach der GitHub-Pages-Veröffentlichung https://platinoladies.github.io/warteliste.html mit Strg+F5 aktualisieren.
 
-2) warteliste.html bei GitHub bearbeiten (nicht komplett ersetzen):
-   Unmittelbar VOR <section ... class="pl-wait-columns"> diese Zeile einfügen:
-   <section id="pl-aufnahme-countdown" aria-label="Countdown zur nächsten Clubaufnahme"></section>
-
-3) Im <head> von warteliste.html vor </head> einfügen:
-   <link rel="stylesheet" href="aufnahme-countdown.css">
-
-4) Am Ende von warteliste.html vor </body> einfügen:
-   <script src="aufnahme-countdown.js"></script>
-
-WICHTIG:
-- Der Countdown nimmt 20:00 Uhr als Uhrzeit an. Falls die Aufnahme zu einer anderen Uhrzeit stattfindet, in aufnahme-countdown.js die Zahl 20 bei berlinDateToUTC(y,m,day,20) ändern.
-- kalender.html und kalender.html.encrypted.json bleiben unverändert.
-- Die Kalendertexte werden nach der Entschlüsselung nur optisch entfernt; der verschlüsselte Originalinhalt bleibt erhalten.
+Die Seite enthält den Countdown über den Bewerbungsspalten, jeweils bis zum ersten bzw. dritten Dienstag des Monats um 20:00 Uhr (Europe/Berlin). Die bisherigen Verweise auf script.js und warteliste.js bleiben bestehen.
