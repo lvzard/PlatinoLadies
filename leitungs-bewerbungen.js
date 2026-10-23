@@ -3,6 +3,15 @@
 const ENDPOINT='https://lqmwirnifapxctzmkmll.supabase.co/functions/v1/leitung-zugang', KEY='pl_leitung_session';
 const $=id=>document.getElementById(id),login=$('pl-login'),dash=$('pl-dashboard'),status=$('pl-list-status'),list=$('pl-applications');
 let token=sessionStorage.getItem(KEY),owner=false,applications=[],filter='alle';
+// Client-side display only; the server independently verifies owner privileges.
+function tokenIsOwner(value){
+ try{
+  const part=value.split('.')[0].replace(/-/g,'+').replace(/_/g,'/');
+  const data=JSON.parse(atob(part));
+  return data.role==='owner' && data.exp>Date.now();
+ }catch{return false;}
+}
+owner=tokenIsOwner(token||'');
 function message(target,msg){target.textContent=msg;}
 function elem(tag,txt,cls){const e=document.createElement(tag);if(txt!==undefined)e.textContent=String(txt);if(cls)e.className=cls;return e;}
 async function api(action,extra={}){
@@ -61,7 +70,21 @@ function render(){
      b.disabled=true;
      try{await api('status',{id:a.id,status:value});await load();}catch(e){alert(e.message);b.disabled=false;}
     };buttons.append(b);
-   }content.append(buttons);
+   }
+   const remove=elem('button','🗑 Bewerbung löschen','btn pl-delete-button');
+   remove.type='button';
+   remove.onclick=async()=>{
+     const name=a.sso_name||'Ohne Namen';
+     if(!confirm(`Bewerbung von „${name}“ wirklich DAUERHAFT löschen?\n\nDiese Aktion kann nicht rückgängig gemacht werden.`))return;
+     remove.disabled=true;
+     try{
+       await api('delete',{id:a.id});
+       applications=applications.filter(item=>item.id!==a.id);
+       render();
+     }catch(err){alert('Löschen fehlgeschlagen: '+err.message);remove.disabled=false;}
+   };
+   buttons.append(remove);
+   content.append(buttons);
   }
   details.append(content);card.append(details);list.append(card);
  }

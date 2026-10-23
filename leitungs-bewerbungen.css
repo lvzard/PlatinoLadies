@@ -42,3 +42,7 @@
 .pl-empty{text-align:center;padding:30px;color:#dac9e3}
 .pl-decision-actions{margin-top:20px}
 @media(max-width:560px){.pl-fields{grid-template-columns:1fr;gap:4px}.pl-fields dt{margin-top:12px}.pl-summary{padding:15px}.pl-detail-content{padding:0 15px 18px}}
+
+/* Permanentes Löschen – nur mit Owner-Berechtigung */
+.pl-delete-button{background:#6c304b!important;border-color:#a76b82!important;color:#fff!important;margin-left:auto}
+.pl-delete-button:hover{background:#863d5c!important}
