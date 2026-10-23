@@ -1,13 +1,10 @@
-Platino Ladies – Gästebucharchiv
+Platino Ladies – Vier Änderungen
 
-In GitHub im Hauptverzeichnis NUR diese beiden Dateien ersetzen:
-- leitungs-gaestebuch.html
-- leitungs-gaestebuch.js
+1. Lade die HTML-Dateien aus diesem Paket in das Hauptverzeichnis deines GitHub-Repositories und ersetze die gleichnamigen Dateien.
+2. Lege den Ordner bilder an und lade die vier PNG-Bilder hinein.
+3. Öffne style.css auf GitHub und ergänze ganz unten den Inhalt von ZUSATZ-CSS.txt. Nicht die bestehende style.css ersetzen!
+4. Commit changes, kurz warten und Strg+F5.
 
-Commit changes klicken und die Gästebuchverwaltung neu laden (Strg+F5).
+WICHTIG: Die Warteliste zeigt zunächst drei Statusbereiche, aber KEINE Live-Bewerbungen. Für automatische Zahlen/Einträge braucht es einen separaten datenschutzgerechten öffentlichen Supabase-Endpunkt. Die vorhandene Leitungsverwaltung darf nicht öffentlich ausgelesen werden.
 
-Drei Bereiche: Noch nicht bearbeitet, Angenommen, Abgelehnt.
-Nach einer Entscheidung wandert ein Eintrag in das jeweilige Archiv.
-Angenommene und abgelehnte Einträge können jeweils in die andere Kategorie umgestellt oder gelöscht werden.
-Eine Rücksetzung auf 'Noch nicht bearbeitet' ist mit der bestehenden Supabase-Funktion nicht möglich.
-Supabase und das öffentliche Gästebuch werden nicht verändert.
+Hinweis: Dieses Paket basiert auf der zuletzt bereitgestellten Website-Version. Wenn du seitdem weitere HTML-Änderungen direkt auf GitHub vorgenommen hast, sichere diese vor dem Ersetzen.
