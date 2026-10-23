@@ -1,0 +1,9 @@
+Platino Ladies – Testbewerbung
+
+1. Diese ZIP entpacken und die Dateien bewerbungsfach.html und application-form.js im GitHub-Website-Repository ersetzen.
+2. GitHub Pages Aktualisierung abwarten, dann Bewerbungsfach öffnen und erfundene Testdaten ausfüllen.
+3. Auf Angaben prüfen und Bewerbung absenden klicken.
+4. Supabase > Table Editor > bewerbungen: Prüfen, ob eine neue Zeile mit status neu erscheint.
+5. Die Leitungszentrale zeigt noch KEINE Live-Daten. Dafür müssen persönliche Leitungslogins und RLS-Richtlinien eingerichtet werden.
+
+Sicherheit: Diese öffentliche Funktion hat noch keinen belastbaren Spam-/Rate-Limit-Schutz. Für den öffentlichen Dauerbetrieb zunächst CAPTCHA und Rate-Limiting ergänzen. Keine realen personenbezogenen Bewerbungen im Test einreichen.
