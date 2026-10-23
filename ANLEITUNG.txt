@@ -1,1 +1,13 @@
-Bitte NUR index.html und script.js im GitHub-Hauptverzeichnis ersetzen. Danach Commit changes und Strg+F5. Der Zaehler erscheint nur auf der Startseite direkt unter dem Footer-Text. Die Zahl ist live, nicht die Vorschauzahl.
+Platino Ladies – Gästebucharchiv
+
+In GitHub im Hauptverzeichnis NUR diese beiden Dateien ersetzen:
+- leitungs-gaestebuch.html
+- leitungs-gaestebuch.js
+
+Commit changes klicken und die Gästebuchverwaltung neu laden (Strg+F5).
+
+Drei Bereiche: Noch nicht bearbeitet, Angenommen, Abgelehnt.
+Nach einer Entscheidung wandert ein Eintrag in das jeweilige Archiv.
+Angenommene und abgelehnte Einträge können jeweils in die andere Kategorie umgestellt oder gelöscht werden.
+Eine Rücksetzung auf 'Noch nicht bearbeitet' ist mit der bestehenden Supabase-Funktion nicht möglich.
+Supabase und das öffentliche Gästebuch werden nicht verändert.
