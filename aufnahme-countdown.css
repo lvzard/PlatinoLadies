@@ -1,0 +1,7 @@
+/* Platino Ladies – Ergänzung; bestehende CSS unverändert lassen */
+#pl-aufnahme-countdown{margin:24px 0 32px;padding:26px 20px;text-align:center;border:1px solid rgba(195,149,242,.45);border-radius:18px;background:linear-gradient(135deg,rgba(62,30,90,.55),rgba(18,12,30,.9));box-shadow:0 0 28px rgba(164,100,220,.12)}
+#pl-aufnahme-countdown .pl-aufnahme-kicker{color:#d5b3ff;font-size:.8rem;letter-spacing:.2em}
+#pl-aufnahme-countdown h2{margin:12px 0;color:#f1e2ff}
+#pl-aufnahme-countdown p{margin:0 auto 14px;max-width:560px;color:#d8c9e7}
+#pl-aufnahme-countdown .pl-aufnahme-date{font-weight:600;color:#ebd4ff;margin-bottom:10px}
+#pl-aufnahme-countdown .pl-aufnahme-clock{font-size:clamp(1rem,3vw,1.65rem);font-weight:700;color:#fff;letter-spacing:.02em;font-variant-numeric:tabular-nums}

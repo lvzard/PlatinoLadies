@@ -1,5 +1,22 @@
-1. Beide Dateien warteliste.html und warteliste.js ins Hauptverzeichnis des GitHub-Repositories hochladen.
-2. Commit changes.
-3. https://platinoladies.github.io/warteliste.html öffnen und Strg+F5.
-4. Die Edge Function oeffentliche-warteliste muss deployed sein und Verify JWT deaktiviert.
-5. Einträge werden 30 Tage nach created_at ausgeblendet, nicht aus der Datenbank gelöscht.
+PLATINO LADIES – COUNTDOWN + KALENDER-HINWEISE
+
+1) Die folgenden 4 Dateien in den Hauptordner von GitHub hochladen:
+   secure-loader.js (vorhandene Datei ersetzen)
+   kalender-hinweise-entfernen.js (neu)
+   aufnahme-countdown.js (neu)
+   aufnahme-countdown.css (neu)
+
+2) warteliste.html bei GitHub bearbeiten (nicht komplett ersetzen):
+   Unmittelbar VOR <section ... class="pl-wait-columns"> diese Zeile einfügen:
+   <section id="pl-aufnahme-countdown" aria-label="Countdown zur nächsten Clubaufnahme"></section>
+
+3) Im <head> von warteliste.html vor </head> einfügen:
+   <link rel="stylesheet" href="aufnahme-countdown.css">
+
+4) Am Ende von warteliste.html vor </body> einfügen:
+   <script src="aufnahme-countdown.js"></script>
+
+WICHTIG:
+- Der Countdown nimmt 20:00 Uhr als Uhrzeit an. Falls die Aufnahme zu einer anderen Uhrzeit stattfindet, in aufnahme-countdown.js die Zahl 20 bei berlinDateToUTC(y,m,day,20) ändern.
+- kalender.html und kalender.html.encrypted.json bleiben unverändert.
+- Die Kalendertexte werden nach der Entschlüsselung nur optisch entfernt; der verschlüsselte Originalinhalt bleibt erhalten.
