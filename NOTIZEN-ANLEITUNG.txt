@@ -1,0 +1,16 @@
+PLATINO LADIES – INTERNE NOTIZEN
+
+1. In Supabase -> SQL Editor -> New query die Datei SUPABASE-NOTIZEN-SQL.sql
+   vollständig einfügen und Run klicken.
+2. Alle Dateien und Unterordner aus diesem ZIP in dein GitHub-Repository
+   hochladen (Add file -> Upload files -> Commit changes).
+   Die .sql-Datei und diese Anleitung müssen nicht öffentlich hochgeladen werden.
+3. Seite leitungs-bewerbungen.html öffnen, Strg+F5, anmelden.
+4. Notiz schreiben, „Notiz speichern“ klicken und Seite neu laden.
+
+Nur in club_leitung eingetragene Accounts mit Rolle owner oder leader
+dürfen über die RPC Notizen ändern. Der bestehende Owner-Status-Workflow
+bleibt unverändert. Bitte vor echten Bewerbungen mit einem Leader-Testaccount
+prüfen, dass dieser keine Bewerbungen annehmen/ablehnen kann.
+
+WICHTIG: Notizen sind für alle berechtigten Leitungsaccounts sichtbar.

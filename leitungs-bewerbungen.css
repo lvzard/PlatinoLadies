@@ -1,1 +1,8 @@
 #pl-login[hidden],#pl-dashboard[hidden]{display:none!important}.pl-panel{max-width:1050px;margin:24px auto;padding:clamp(20px,4vw,38px)}#pl-login{max-width:530px}#pl-login-form{display:grid;gap:16px}#pl-login-form label{display:grid;gap:8px}#pl-login-form input{width:100%;padding:13px;border-radius:12px;border:1px solid #81609b;background:#171020;color:#fff}.pl-head,.pl-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.pl-application{padding:22px;margin:18px 0;border:1px solid #694783;border-radius:16px;background:rgba(60,34,80,.24)}.pl-application h3{margin:0 0 10px}.pl-application dl{display:grid;grid-template-columns:minmax(110px,180px) 1fr;gap:9px 16px;overflow-wrap:anywhere}.pl-application dt{opacity:.75}.pl-application dd{margin:0;white-space:pre-wrap}.pl-application .pl-actions{justify-content:flex-start}.pl-status{min-height:1.5em}.pl-status[data-error=true]{color:#ffc4d0}.pl-pill{display:inline-block;padding:4px 10px;border-radius:50px;border:1px solid #9a78b6;font-size:.85em}@media(max-width:520px){.pl-application dl{grid-template-columns:1fr;gap:3px}.pl-application dt{margin-top:10px}}
+/* Interne Leitungsnotizen */
+.pl-notes{margin:18px 0 20px;padding:18px;border:1px solid #694783;border-radius:14px;background:rgba(24,13,35,.42)}
+.pl-notes-label{display:grid;gap:10px;font-weight:600;color:#ead7f6}
+.pl-notes textarea{display:block;width:100%;box-sizing:border-box;resize:vertical;min-height:110px;padding:13px;border:1px solid #81609b;border-radius:12px;background:#171020;color:#fff;font:inherit;line-height:1.5}
+.pl-notes textarea:focus{outline:2px solid #ab82cc;outline-offset:2px}
+.pl-notes .pl-actions{justify-content:flex-start;margin-top:12px}
+.pl-note-status[data-error=true]{color:#ffc4d0}
