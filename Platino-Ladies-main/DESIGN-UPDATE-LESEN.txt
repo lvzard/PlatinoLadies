@@ -1,0 +1,7 @@
+Platino Academy – Animationen im dunklen Dressurplatz-Stil
+
+Alle vorhandenen Fundamental Moves & Cues-Animationen wurden optisch umgestellt: Raster, Bahnbuchstaben, Gangart oben links, GO-Anzeige oben rechts, gestrichelte Weglinie und zwei nummerierte Kreise.
+
+WICHTIG: Die Bewegungswege selbst wurden in diesem Design-Update nicht neu nach dem SSD-Video korrigiert. Gangart ist bei den meisten Figuren als TRAB voreingestellt; dies ist eine Designanzeige, keine verifizierte SSD-Gangartvorgabe.
+
+Start: dressage-academy.html öffnen.

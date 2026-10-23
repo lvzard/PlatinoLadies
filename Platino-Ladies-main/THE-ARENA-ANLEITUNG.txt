@@ -1,0 +1,8 @@
+Platino Dressage Academy – The Arena
+
+1. ZIP entpacken.
+2. Platino-Ladies-main/dressage-academy.html doppelklicken.
+3. The Arena auswählen.
+4. Alle neun Einträge stehen untereinander, mit Bahngrafik.
+
+Noch nicht auf GitHub hochladen, bevor du die Darstellung geprüft hast.

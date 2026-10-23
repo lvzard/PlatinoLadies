@@ -1,0 +1,8 @@
+Platino Dressage Academy – individuelle Bewegungsabläufe
+
+Auf GitHub diese drei Dateien ersetzen:
+academy-data.js
+academy-v2.js
+dressage-academy.html
+
+WICHTIG: Die Animationen sind schematische Rekonstruktionen nach den übermittelten Beschreibungen, keine vollständig SSD-geprüften Reitwege. Komplexe Formationen, Gangarten und Kommandotiming benötigen weitere Verfeinerung. Bloom/Cave/Rotary bleiben in ihrer bisherigen Geometrie erhalten.

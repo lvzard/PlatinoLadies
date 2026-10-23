@@ -1,0 +1,11 @@
+PLATINO LADIES – DRESSAGE ACADEMY UPDATE
+
+1. ZIP auf dem iPad in Dateien entpacken.
+2. GitHub-Repository lvzard/Platino-Ladies öffnen.
+3. Neue Dateien academy-data.js, academy-v2.js, academy-v2.css hochladen.
+4. Die vorhandene dressage-academy.html durch die Version aus diesem Paket ERSETZEN.
+5. Alle übrigen Website-Dateien unverändert lassen.
+
+WICHTIG: GitHub erlaubt möglicherweise nicht, eine gleichnamige Datei über Upload files direkt zu überschreiben. In diesem Fall dressage-academy.html über den Stift (Edit file) ersetzen oder die alte Datei gezielt löschen und die neue hochladen. Nicht die gesamte Website löschen.
+
+Aktueller Umfang: 22 Circle Moves und 30 Beginner Moves mit deutschen Kurzbeschreibungen und individuellen schematischen Bewegungsanimationen. Andere Kategorien als Navigation vorbereitet. Kein echter Passwortschutz unter GitHub Pages.
