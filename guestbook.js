@@ -3,7 +3,7 @@
 (() => {
   'use strict';
   // Configure this URL after deploying a secure backend. Until then the empty state is shown.
-  const PUBLIC_ENTRIES_ENDPOINT = '';
+  const PUBLIC_ENTRIES_ENDPOINT = 'https://lqmwirnifapxctzmkmll.supabase.co/functions/v1/gaestebuch';
   const list = document.getElementById('guestbook-entries');
   const count = document.getElementById('guestbook-count');
   if (!list || !count || !PUBLIC_ENTRIES_ENDPOINT) return;
@@ -37,5 +37,18 @@
       const retry = text('button','btn ghost','Erneut versuchen'); retry.type='button'; retry.addEventListener('click',loadEntries); panel.append(document.createElement('br'),retry); list.append(panel);
     }
   }
+  const form=document.getElementById('guestbook-form');
+  const hint=form?.querySelector('.guestbook-hint');
+  form?.addEventListener('submit',async e=>{
+    e.preventDefault();if(!form.reportValidity())return;
+    const btn=form.querySelector('button[type=submit]');btn.disabled=true;
+    hint.textContent='Nachricht wird übermittelt …';
+    try{
+      const payload={name:document.getElementById('guestbook-name').value.trim(),club:document.getElementById('guestbook-club').value.trim(),message:document.getElementById('guestbook-message').value.trim()};
+      const res=await fetch(PUBLIC_ENTRIES_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+      const data=await res.json();if(!res.ok)throw Error(data.error||'Senden fehlgeschlagen');
+      form.reset();hint.textContent='✓ Danke! Deine Nachricht wartet auf die Freigabe durch unsere Leitung.';
+    }catch(err){hint.textContent='Fehler: '+err.message;}finally{btn.disabled=false;}
+  });
   loadEntries();
 })();

@@ -1,22 +1,18 @@
-Platino Ladies – KORREKTUR LEITUNGSZENTRALE
+PLATINO LADIES – GÄSTEBUCH UPDATE
 
-WICHTIG: Dies ist ein kleines Update, keine vollständige Website.
-Die 5 Dateien direkt in das HAUPTVERZEICHNIS des GitHub-Repositories hochladen:
-- leitungszentrale.html
-- leitungs-login.js
-- leitungs-bewerbungen.html
-- leitungs-bewerbungen.js
-- leitungs-bewerbungen.css
+1) Supabase > SQL Editor: SUPABASE-GAESTEBUCH.sql ausführen.
+2) Supabase > Edge Functions: zwei NEUE Funktionen erstellen:
+   - gaestebuch: Inhalt von SUPABASE-FUNCTION-gaestebuch.ts
+   - gaestebuch-admin: Inhalt von SUPABASE-FUNCTION-gaestebuch-admin.ts
+   Für BEIDE Funktionen „Verify JWT“ / JWT-Verifizierung ausschalten (sie nutzen eigene Prüfung).
+   Wichtig: Die Funktion gaestebuch-admin prüft das bereits vorhandene signierte Leitungssitzungstoken.
+3) Supabase > Edge Function Secrets: DISCORD_WEBHOOK_URL muss wie bei Bewerbungen gesetzt sein.
+   LEITUNG_SESSION_SECRET muss dem bestehenden Secret der Funktion leitung-zugang entsprechen.
+   Optional: GAESTEBUCH_RATE_SECRET als zufälligen langen Wert setzen.
+4) In GitHub im Repository platinoladies/platinoladies.github.io im ROOT diese 5 Dateien ersetzen/hinzufügen:
+   gaestebuch.html, guestbook.js, leitungszentrale.html, leitungs-gaestebuch.html, leitungs-gaestebuch.js.
+   Bestehende Dateien NICHT löschen.
+5) Test: neue Nachricht auf /gaestebuch.html senden, Discord prüfen, in Leitungszentrale einloggen,
+   Gästebuchverwaltung öffnen, freigeben und öffentliche Gästebuchseite neu laden.
 
-GitHub: Repository -> Add file -> Upload files -> Dateien aus diesem Ordner wählen -> Commit changes.
-Nicht den Ordner selbst hochladen. Falls GitHub nicht anbietet, vorhandene Dateien zu ersetzen,
-überprüfen, ob sie im Hauptverzeichnis liegen.
-
-TEST:
-https://lvzard.github.io/PlatinoLadies/leitungszentrale.html
-Strg+F5 drücken. Leitungspasswort ist das NEUE in Supabase hinterlegte
-Passwort (Secret LEITUNG_PASSWORT), nicht das alte Clubpasswort.
-Nach erfolgreichem Login erscheint „Bewerbungsverwaltung“.
-Kein zusätzlicher Login in der Bewerbungsverwaltung nötig.
-
-Das separate Clubpasswort des Mitgliederbereichs bleibt unverändert.
+Sicherheit: Browser bekommt keinen Service-Role-Key und keinen Discord-Webhook. Nur freigegebene Einträge werden öffentlich geladen. Alle Leader dürfen moderieren. 5-Minuten-Sperre je IP-Hash gegen einfache Spam-Fluten. Für öffentlichen Betrieb empfiehlt sich zusätzlich CAPTCHA/Turnstile, eine Datenschutzerklärung und ein Aufbewahrungskonzept. Die vorhandenen Bewerbungsfunktionen werden NICHT überschrieben.
