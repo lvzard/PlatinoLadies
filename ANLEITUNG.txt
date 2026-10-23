@@ -1,1 +1,8 @@
-Diese drei Dateien ins Hauptverzeichnis deines GitHub-Repositories platinoladies.github.io hochladen und gleichnamige Dateien ersetzen. Keine Änderungen in Supabase nötig. Danach gaestebuch.html mit Strg+F5 aktualisieren. Jeder freigegebene Eintrag erscheint auf einer eigenen Buchseite. Am Ende steht das Formular.
+Platino Ladies – Über uns Layout-Fix
+
+1. Auf GitHub das Repository platinoladies/platinoladies.github.io öffnen.
+2. Die Dateien ueber-uns.html und style.css im Hauptverzeichnis ersetzen.
+3. Commit changes klicken.
+4. https://platinoladies.github.io/ueber-uns.html mit Strg+F5 neu laden.
+
+Nur Layout, Untertitel und Footer wurden angepasst. Links und Funktionen bleiben erhalten.
