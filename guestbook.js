@@ -3,7 +3,7 @@
 (() => {
   'use strict';
   // Configure this URL after deploying a secure backend. Until then the empty state is shown.
-  const PUBLIC_ENTRIES_ENDPOINT = 'https://lqmwirnifapxctzmkmll.supabase.co/functions/v1/gaestebuch';
+const PUBLIC_ENTRIES_ENDPOINT = "https://lqmwirnifapxctzmkmll.supabase.co/functions/v1/gaestebuch-einreichen";
   const list = document.getElementById('guestbook-entries');
   const count = document.getElementById('guestbook-count');
   if (!list || !count || !PUBLIC_ENTRIES_ENDPOINT) return;
