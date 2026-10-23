@@ -1,8 +1,21 @@
-Platino Ladies – Über uns Layout-Fix
+PLATINO LADIES – BESUCHERZÄHLER
 
-1. Auf GitHub das Repository platinoladies/platinoladies.github.io öffnen.
-2. Die Dateien ueber-uns.html und style.css im Hauptverzeichnis ersetzen.
-3. Commit changes klicken.
-4. https://platinoladies.github.io/ueber-uns.html mit Strg+F5 neu laden.
+Es werden Besuche (nicht eindeutig identifizierte Personen) gezählt.
+Mehrere Seitenaufrufe desselben Browsers innerhalb von 30 Minuten zählen normalerweise nur einmal.
+Serverseitig werden wiederholte Aufrufe mit demselben IP-/Browser-Fingerprint im selben 30-Minuten-Fenster zusammengefasst.
+Der Zähler beginnt bei 0, ältere GitHub-Pages-Besuche können nicht rückwirkend erfasst werden.
 
-Nur Layout, Untertitel und Footer wurden angepasst. Links und Funktionen bleiben erhalten.
+1) Supabase > SQL Editor > New query: Inhalt von SUPABASE-BESUCHERZAEHLER.sql einfügen und Run.
+2) Supabase > Edge Functions > Secrets: Neues Secret VISITOR_HASH_SECRET anlegen.
+   Als Wert eine selbst erzeugte lange zufällige Zeichenfolge (mindestens 32 Zeichen) verwenden.
+   Diesen Wert NICHT in GitHub veröffentlichen.
+3) Supabase > Edge Functions > Deploy a new function > Via Editor.
+   Funktionsname: besucherzaehler
+   Code aus SUPABASE-FUNKTION-besucherzaehler.ts einfügen und deployen.
+   Settings > Verify JWT: OFF (nur für diese öffentliche Zähler-Funktion).
+4) GitHub > Repository platinoladies/platinoladies.github.io > script.js im Hauptverzeichnis
+   mit der Datei script.js aus diesem ZIP ersetzen > Commit changes.
+5) Website neu laden (Strg+F5). Zähler erscheint auf den öffentlichen Seiten unten im Footer.
+
+Es werden keine anderen Dateien und keine vorhandenen Bewerbungs-/Gästebuchfunktionen geändert.
+Bei Netzwerkproblemen blendet sich der Zähler aus, damit die Website weiterhin funktioniert.
