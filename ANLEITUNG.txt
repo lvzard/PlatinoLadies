@@ -1,10 +1,5 @@
-Platino Ladies – Vier Änderungen
-
-1. Lade die HTML-Dateien aus diesem Paket in das Hauptverzeichnis deines GitHub-Repositories und ersetze die gleichnamigen Dateien.
-2. Lege den Ordner bilder an und lade die vier PNG-Bilder hinein.
-3. Öffne style.css auf GitHub und ergänze ganz unten den Inhalt von ZUSATZ-CSS.txt. Nicht die bestehende style.css ersetzen!
-4. Commit changes, kurz warten und Strg+F5.
-
-WICHTIG: Die Warteliste zeigt zunächst drei Statusbereiche, aber KEINE Live-Bewerbungen. Für automatische Zahlen/Einträge braucht es einen separaten datenschutzgerechten öffentlichen Supabase-Endpunkt. Die vorhandene Leitungsverwaltung darf nicht öffentlich ausgelesen werden.
-
-Hinweis: Dieses Paket basiert auf der zuletzt bereitgestellten Website-Version. Wenn du seitdem weitere HTML-Änderungen direkt auf GitHub vorgenommen hast, sichere diese vor dem Ersetzen.
+1. Beide Dateien warteliste.html und warteliste.js ins Hauptverzeichnis des GitHub-Repositories hochladen.
+2. Commit changes.
+3. https://platinoladies.github.io/warteliste.html öffnen und Strg+F5.
+4. Die Edge Function oeffentliche-warteliste muss deployed sein und Verify JWT deaktiviert.
+5. Einträge werden 30 Tage nach created_at ausgeblendet, nicht aus der Datenbank gelöscht.
