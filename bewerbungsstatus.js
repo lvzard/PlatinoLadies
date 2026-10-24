@@ -17,7 +17,12 @@
  // Fail closed: Ohne verlässlichen Serverstatus keine Bewerbungen annehmen.
  setOpen(false);
  if(notice){notice.querySelector('h2').textContent='✧ Bewerbungsstatus wird geprüft ✧';notice.querySelector('p').textContent='Bitte einen Moment warten …';}
- fetch(endpoint,{cache:'no-store'}).then(async r=>{const d=await r.json();if(!r.ok||typeof d.open!=='boolean')throw Error('Status nicht verfügbar');setOpen(d.open);}).catch(()=>{
+ fetch(endpoint,{
+  cache:'no-store',
+  headers:{
+    'apikey':'sb_publishable_4vWZiD2xePd7EwFAdTUDAg_lv8KEXKs'
+  }
+}).then(async r=>{const d=await r.json();if(!r.ok||typeof d.open!=='boolean')throw Error('Status nicht verfügbar');setOpen(d.open);}).catch(()=>{
   if(notice){notice.querySelector('h2').textContent='✧ Bewerbungsfach vorübergehend nicht verfügbar ✧';notice.querySelector('p').textContent='Der Bewerbungsstatus konnte nicht geladen werden. Bitte versuche es später erneut.';}
  });
 })();
