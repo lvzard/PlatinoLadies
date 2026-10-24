@@ -29,7 +29,7 @@
     form.scrollIntoView({behavior:'smooth',block:'start'});
   });
   send.addEventListener('click', async () => {
-    if (submitted || send.disabled || !form.reportValidity()) return;
+    if (window.PL_APPLICATIONS_OPEN !== true || submitted || send.disabled || !form.reportValidity()) return;
     const v = new FormData(form);
     const answers = Object.fromEntries(fields.map(([k]) => [k, String(v.get(k) || '')]));
     const payload = {
@@ -56,7 +56,7 @@
       const result = await res.json().catch(() => ({}));
       if (!res.ok || result.success !== true) throw new Error(result.error || 'Übertragung fehlgeschlagen');
       submitted = true;
-      status.textContent = '✧ Deine Testbewerbung wurde erfolgreich eingereicht!';
+      status.textContent = '✧ Deine Bewerbung wurde erfolgreich eingereicht!';
       send.textContent = '✓ Bewerbung eingereicht';
       edit.hidden = true;
     } catch (err) {

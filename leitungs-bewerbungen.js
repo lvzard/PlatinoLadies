@@ -101,13 +101,40 @@ async function load(){
   if(/Sitzung abgelaufen|erneut anmelden|401|Ungültig/i.test(e.message)){sessionStorage.removeItem(KEY);token=null;dash.hidden=true;login.hidden=false;}
  }
 }
+
+// Bewerbungsfach-Status wird durch die geschützte Edge Function geprüft und geändert.
+let intakeOpen = null;
+const intakeStatus = $('pl-intake-status');
+const intakeButton = $('pl-intake-toggle');
+async function loadIntake(){
+ if(!intakeStatus || !intakeButton) return;
+ intakeButton.disabled=true;
+ try{
+  const data=await api('intake_get');
+  if(typeof data.open!=='boolean') throw new Error('Ungültige Statusantwort');
+  intakeOpen=data.open;
+  intakeStatus.textContent=intakeOpen?'✓ Bewerbungsfach ist geöffnet':'✦ Bewerbungsfach ist geschlossen';
+  intakeButton.textContent=intakeOpen?'Bewerbungsfach schließen':'Bewerbungsfach öffnen';
+  intakeButton.disabled=!owner;
+  if(!owner) intakeStatus.textContent += ' · Nur Lutz kann den Status ändern.';
+ }catch(e){intakeStatus.textContent='Status nicht verfügbar: '+e.message;intakeButton.textContent='Erneut versuchen';intakeButton.disabled=false;}
+}
+if(intakeButton) intakeButton.onclick=async()=>{
+ if(intakeOpen===null){await loadIntake();return;}
+ const next=!intakeOpen;
+ if(!confirm(next?'Bewerbungsfach jetzt öffnen?':'Bewerbungsfach wirklich schließen? Neue Bewerbungen werden dann abgelehnt.'))return;
+ intakeButton.disabled=true;
+ try{await api('intake_set',{open:next});await loadIntake();}
+ catch(e){intakeStatus.textContent='Änderung fehlgeschlagen: '+e.message;intakeButton.disabled=false;}
+};
+
 function showDashboard(){login.hidden=true;dash.hidden=false;$('pl-owner').hidden=owner;message($('pl-user-label'),owner?'Lutz · Owner':'Clubleitung');}
 $('pl-login-form').onsubmit=async e=>{
  e.preventDefault();message($('pl-login-status'),'Prüfe Zugang …');
  try{
   const result=await api('login',{password:$('pl-password').value});
   token=result.token;owner=false;sessionStorage.setItem(KEY,token);$('pl-password').value='';
-  showDashboard();await load();
+  showDashboard();await load();await loadIntake();
  }catch(err){message($('pl-login-status'),err.message);}
 };
 $('pl-owner').onclick=()=>{$('pl-owner-form').hidden=!$('pl-owner-form').hidden;};
@@ -117,10 +144,10 @@ $('pl-owner-form').onsubmit=async e=>{
   const result=await api('owner',{code:$('pl-owner-code').value});
   token=result.token;owner=true;sessionStorage.setItem(KEY,token);
   $('pl-owner-code').value='';$('pl-owner-form').hidden=true;
-  showDashboard();await load();
+  showDashboard();await load();await loadIntake();
  }catch(err){message($('pl-owner-status'),err.message);}
 };
-$('pl-refresh').onclick=load;
+$('pl-refresh').onclick=()=>{load();loadIntake();};
 $('pl-logout').onclick=()=>{
  token=null;owner=false;sessionStorage.removeItem(KEY);dash.hidden=true;login.hidden=false;
  $('pl-owner-form').hidden=true;list.replaceChildren();message($('pl-login-status'),'Abgemeldet.');
@@ -129,6 +156,6 @@ for(const b of document.querySelectorAll('.pl-filter'))b.addEventListener('click
 $('pl-search').addEventListener('input',render);
 if(token){
  // Existing session is checked by the server before showing applicant data.
- showDashboard();load();
+ showDashboard();load();loadIntake();
 }
 })();
